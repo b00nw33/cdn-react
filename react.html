@@ -1,0 +1,149 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barebone React via CDN</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <script type="text/javascript" src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+    <!-- <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/react-hook-use-state@1.1.0/lib/index.min.js"></script> -->
+
+
+    <script type="text/babel">
+
+        function Header() {
+            return (
+                <div>
+                    <h1>Use React on static sites!</h1>
+                    <a href="https://dev.to/jeetvora331/write-react-code-with-cdn-in-html-56i9">Source</a>
+                </div>
+            )
+        }
+
+        function Icons() {
+            return (
+                <div>
+                    <h2>Font Awesome Test</h2>
+                    <i class="fa-solid fa-rocket"></i>
+                    <h2>Bootstrap Icons Test</h2>
+                    <i class="bi bi-alarm"></i>
+
+                </div>
+            );
+        }
+
+        function Image() {
+            const user = {
+                name: 'CDNJS Logo',
+                imageUrl: 'https://cdnjs.com/_/f7a2ebfb819c118086546e481876aef6.svg',
+                imageSize: 90,
+            };
+
+            return (
+                <div>
+                    <h1>{user.name}</h1>
+                    <img
+                        className="avatar"
+                        src={user.imageUrl}
+                        alt={'Photo of ' + user.name}
+                        style={{
+                            width: user.imageSize,
+                            height: user.imageSize
+                        }}
+                    />
+                </div>
+            );
+        }
+
+        function Conditional() {
+            let isLoggedIn = true;
+
+            return (
+                <div>
+                    {isLoggedIn ?
+                        "LoginForm" : "AdminPanel"
+                    }
+                    <br />
+                    {isLoggedIn && "AdminPanel"}
+                </div>
+            );
+        }
+
+        function MyButton() {
+            function handleClick() {
+                alert('You clicked me!');
+            }
+
+            return (
+                <button onClick={handleClick}>
+                    Click me
+                </button>
+            );
+        }
+
+        function Mapping() {
+            const products = [
+                { title: 'Cabbage', isFruit: false, id: 1 },
+                { title: 'Garlic', isFruit: false, id: 2 },
+                { title: 'Apple', isFruit: true, id: 3 },
+            ];
+
+            const listItems = products.map(product =>
+                <li
+                    key={product.id}
+                    style={{
+                        color: product.isFruit ? 'magenta' : 'darkgreen'
+                    }}
+                >
+                    {product.title}
+                </li>
+            );
+
+            return (
+                <ul>{listItems}</ul>
+            );
+        }
+
+        // Define a component called Greetings
+        function Greetings() {
+            return (
+                <div>
+                    <Header />
+                    <br />
+                    <Icons />
+                    <br />
+                    <Image />
+                    <br />
+                    <Conditional />
+                    <br />
+                    <Mapping />
+                    <br />
+                    <MyButton />
+                </div>
+            );
+        }
+
+        // Render the component to the DOM
+        ReactDOM.render(
+            <Greetings />,
+            document.getElementById("root")
+        );
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barebone React via CDN</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+    <!-- <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/react-hook-use-state@1.1.0/lib/index.min.js"></script> -->
+
+
+    <script type="text/babel">
+        const { useState } = React
+
+        function MyButton() {
+            const [count, setCount] = useState(0);
+
+            function handleClick() {
+                setCount(count + 1);
+            }
+
+            return (
+                <button onClick={handleClick}>
+                    Clicked {count} times
+                </button>
+            );
+        }
+
+        function MyApp() {
+            return (
+                <div>
+                    <h1>Counters that update separately</h1>
+                    <MyButton />
+                    <MyButton />
+                </div>
+            );
+        }
+
+        const rootElement = document.getElementById('root')
+        ReactDOM.render(<MyApp />, rootElement)
+    </script>
+
+</body>
+
+</html>
